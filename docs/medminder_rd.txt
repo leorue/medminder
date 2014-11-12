@@ -1,0 +1,64 @@
+Actors-
+patient
+doctor
+pharma
+caretaker
+
+Roles-
+prescribes
+reviews
+customizes
+reminder
+
+Activity-
+journal
+medication
+
+[patient]-(records journal)
+[doctor]-(prescribes medication)
+[doctor]-(customizes journal)
+[pharma]-(customizes journal)
+[doctor]-(reviews journal)
+[pharma]-(reviews journal)
+[patient]-(medication reminder)
+[caretaker]-(medication reminder)
+
+patient records journal
+doctor prescribes medication
+doctor customizes journal
+pharma customizes journal
+caretaker medication reminder
+patient medication reminder
+doctor reviews journal
+pharma reviews journal
+
+[patient|timestamp: dateandtime;reminder: dateandtime;medication: string;dosage: varchar;weight: int;pain: int;foodIntake: int;fluidIntake: int;sleep: varchar;activity: string;symptoms: string;]<>-entry*>[journal]
+[journal]++-review*>[doctor|timestamp: dateandtime;reminder: dateandtime;patientName: string;patientHistory: string;medication: string;dosage: varchar;weight: int;pain: int;foodIntake: int;fluidIntake: int;sleep: varchar;activity: string;symptoms: string;]
+[journal]++-review*>[pharma|timestamp: dateandtime;patientName: string;patientHistory: string;medication: string;dosage: varchar;weight: int;pain: int;foodIntake: int;fluidIntake: int;sleep: varchar;activity: string;symptoms: string;]
+
+Reminder-
+message and alarm goes off for
+patient and caretaker first
+reminds caretaker if event not triggered (fulfilled)
+
+Journal-
+Date and Time
+Medication and Dosage
+Food and Water Intake
+Sleep Schedule
+Activity
+Weight
+Pain
+Symptoms w/ Custom Fields
+
+Review-
+interactive diagrams for
+med dosage
+calorie intake
+fluid intake
+weight
+pain
+sleep
+activity
+symptoms flags
+based on date and time
